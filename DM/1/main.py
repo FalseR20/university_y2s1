@@ -27,7 +27,9 @@ def main():
     print('\n4. Вычисление выражения A ∩ (B ∆ C):')
     pprint(intersect(a, symmetric_difference(b, c, u), u))
     print('Битовая маска:')
-    pprint(intersect_mask(bit_mask(a, u), symmetric_difference_mask(bit_mask(b, u), bit_mask(c, u))))
+    pprint(intersect_mask(mask(a, u),
+                          symmetric_difference_mask(mask(b, u),
+                                                    mask(c, u))))
 
 
 if __name__ == '__main__':

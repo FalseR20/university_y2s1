@@ -2,9 +2,9 @@ from typing import List
 
 
 # ___Стандартные операции с множествами___
-def bit_mask(x: List[int], u: List[int]) -> List[bool]:
+def mask(x: List[int], u: List[int]) -> List[bool]:
     """Получение битовой маски"""
-    out: list[bool] = []
+    out: List[bool] = []
     for el in u:
         out.append(x.count(el) > 0)
     return out
@@ -19,12 +19,12 @@ def merge(x: List[int], y: List[int], u: List[int]) -> List[int]:
     return out
 
 
-def merge_mask(x: list[bool], y: list[bool]) -> list[bool]:
-    """Слияние двух множеств битовой маской"""
-    out: list[bool] = []
-    for el in range(len(x)):
-        out.append(x[el] + y[el] >= 1)
-    return out
+# def merge_mask(x: List[bool], y: List[bool]) -> List[bool]:
+#     """Слияние двух множеств битовой маской"""
+#     out: List[bool] = []
+#     for el in range(len(x)):
+#         out.append(x[el] + y[el] >= 1)
+#     return out
 
 
 def intersect(x: List[int], y: List[int], u: List[int]) -> List[int]:
@@ -36,9 +36,9 @@ def intersect(x: List[int], y: List[int], u: List[int]) -> List[int]:
     return out
 
 
-def intersect_mask(x: list[bool], y: list[bool]) -> list[bool]:
+def intersect_mask(x: List[bool], y: List[bool]) -> List[bool]:
     """Пересечение двух битовых масок"""
-    out: list[bool] = []
+    out: List[bool] = []
     for el in range(len(x)):
         out.append(x[el] + y[el] >= 2)
     return out
@@ -53,16 +53,16 @@ def symmetric_difference(x: List[int], y: List[int], u: List[int]) -> List[int]:
     return out
 
 
-def symmetric_difference_mask(x: list[bool], y: list[bool]) -> list[bool]:
+def symmetric_difference_mask(x: List[bool], y: List[bool]) -> List[bool]:
     """Симметрическая разность двух битовых масок"""
-    out: list[bool] = []
+    out: List[bool] = []
     for el in range(len(x)):
         out.append(x[el] + y[el] == 1)
     return out
 
 
 # ___Другие операции с множествами___
-def boolean(inp: list[int]) -> List[List[int]]:
+def boolean(inp: List[int]) -> List[List[int]]:
     """Получение булеана"""
     times = 2 ** len(inp)
     out = []
@@ -73,7 +73,7 @@ def boolean(inp: list[int]) -> List[List[int]]:
                 temp.append(inp[i])
             time //= 2
         out += [temp]
-    return out
+    return sorted(out)
 
 
 def merge_sort(inp: List[int]) -> List[int]:
