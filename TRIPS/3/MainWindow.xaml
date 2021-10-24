@@ -1,0 +1,56 @@
+﻿<Window x:Class="_3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_3"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="450"
+        Width="800">
+    
+    <Grid>
+        <Menu x:Name="Menu1" MouseEnter="ChangeStatus">
+            <MenuItem Header="_Окно"  MouseEnter="ChangeStatus">
+                <MenuItem Header="_Тема">
+                    <MenuItem Header="_Светлая" Click="SetLightTheme" />
+                    <MenuItem Header="_Темная" Click="SetDarkTheme" />
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="_Закрыть" Click="CloseClick" />
+            </MenuItem>
+            <MenuItem Header="_Инфо">
+                <MenuItem Header="_О разработчике" Click="SiteClick" />
+            </MenuItem>
+        </Menu>
+
+        <ToolBar x:Name="ToolBar1" Height="40" VerticalAlignment="Top" Margin="0 25 0 0"
+                 MouseEnter="ChangeStatus" >
+            <Button x:Name="ButtonLight" Click="SetLightTheme" MouseEnter="ChangeStatus">
+                <Image Source="https://cdn-icons-png.flaticon.com/512/3659/3659789.png" />
+            </Button>
+            <Button x:Name="ButtonDark" Click="SetDarkTheme" MouseEnter="ChangeStatus">
+                <Image Source="https://cdn-icons-png.flaticon.com/512/3659/3659752.png" />
+            </Button>
+            <Separator />
+            <Button x:Name="ButtonInfo" Click="SiteClick" MouseEnter="ChangeStatus">
+                <Image Source="https://cdn-icons-png.flaticon.com/512/545/545674.png" />
+            </Button>
+            <Separator />
+            <Button x:Name="ButtonClose" Click="CloseClick" MouseEnter="ChangeStatus">
+                <Image Source="https://cdn-icons-png.flaticon.com/512/1828/1828666.png" />
+            </Button>
+        </ToolBar>
+
+        <StatusBar VerticalAlignment="Bottom" x:Name="StatusBar1" MouseEnter="ChangeStatus">
+            <StatusBarItem>
+                <TextBlock x:Name="StatusTextBlock1" Width="400"  MouseEnter="ChangeStatus"/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock x:Name="StatusTextBlock2"  MouseEnter="ChangeStatus"/>
+            </StatusBarItem>
+
+        </StatusBar>
+
+    </Grid>
+</Window>
