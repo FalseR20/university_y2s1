@@ -8,10 +8,13 @@
         Title="MainWindow"
         Height="450"
         Width="800">
-    
+
     <Grid>
-        <Menu x:Name="Menu1" MouseEnter="ChangeStatus">
-            <MenuItem Header="_Окно"  MouseEnter="ChangeStatus">
+        <Menu x:Name="Menu1"
+              Background="White"
+              MouseEnter="ChangeStatus">
+            <MenuItem Header="_Окно"
+                      MouseEnter="ChangeStatus">
                 <MenuItem Header="_Тема">
                     <MenuItem Header="_Светлая" Click="SetLightTheme" />
                     <MenuItem Header="_Темная" Click="SetDarkTheme" />
@@ -24,8 +27,12 @@
             </MenuItem>
         </Menu>
 
-        <ToolBar x:Name="ToolBar1" Height="40" VerticalAlignment="Top" Margin="0 25 0 0"
-                 MouseEnter="ChangeStatus" >
+        <ToolBar x:Name="ToolBar1"
+                 Height="40"
+                 VerticalAlignment="Top"
+                 Margin="0 25 0 0"
+                 MouseEnter="ChangeStatus"
+                 Background="AliceBlue">
             <Button x:Name="ButtonLight" Click="SetLightTheme" MouseEnter="ChangeStatus">
                 <Image Source="https://cdn-icons-png.flaticon.com/512/3659/3659789.png" />
             </Button>
@@ -42,15 +49,13 @@
             </Button>
         </ToolBar>
 
-        <StatusBar VerticalAlignment="Bottom" x:Name="StatusBar1" MouseEnter="ChangeStatus">
+        <StatusBar VerticalAlignment="Bottom"
+                   x:Name="StatusBar1"
+                   Background="AliceBlue"
+                   MouseEnter="ChangeStatus">
             <StatusBarItem>
-                <TextBlock x:Name="StatusTextBlock1" Width="400"  MouseEnter="ChangeStatus"/>
+                <TextBlock x:Name="StatusTextBlock1" MouseEnter="ChangeStatus" />
             </StatusBarItem>
-            <StatusBarItem>
-                <TextBlock x:Name="StatusTextBlock2"  MouseEnter="ChangeStatus"/>
-            </StatusBarItem>
-
         </StatusBar>
-
     </Grid>
 </Window>

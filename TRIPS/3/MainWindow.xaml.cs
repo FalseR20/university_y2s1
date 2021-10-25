@@ -47,31 +47,27 @@ namespace _3
         {
             Menu1.Background = Brushes.White;
             ToolBar1.Background = Brushes.AliceBlue;
-            StatusBar1.Background = Brushes.White;
+            StatusBar1.Background = Brushes.AliceBlue;
+            StatusBar1.Background = Brushes.AliceBlue;
         }
 
         private void SetDarkTheme(object sender, RoutedEventArgs e)
         {
             Menu1.Background = Brushes.DimGray;
             ToolBar1.Background = Brushes.Gray;
-            StatusBar1.Background = Brushes.DimGray;
+            StatusBar1.Background = Brushes.Gray;
+            StatusBar1.Background = Brushes.Gray;
         }
 
         private void ChangeStatus(object sender, RoutedEventArgs e)
         {
-            StatusTextBlock1.Text = e.Source.ToString();
-            if (sender.Equals(ButtonLight)) StatusTextBlock2.Text = "Задает светлую тему";
-            else if (sender.Equals(ButtonDark)) StatusTextBlock2.Text = "Задает темную тему";
-            else if (sender.Equals(ButtonInfo)) StatusTextBlock2.Text = "Показывает информацию о разработчике";
-            else if (sender.Equals(ButtonClose)) StatusTextBlock2.Text = "Закрывает окно";
-            else if (sender.Equals(Menu1)) StatusTextBlock2.Text = "Меню";
-            else if (sender.Equals(ToolBar1)) StatusTextBlock2.Text = "Меню инструментов";
-
-            else if (sender.Equals(StatusTextBlock1)) StatusTextBlock2.Text = "Тут показывается смысл";
-            else if (sender.Equals(StatusTextBlock2)) StatusTextBlock2.Text = "Тут выводится угрюмый тип";
-            
-            
-            
+            if (sender.Equals(ButtonLight)) StatusTextBlock1.Text = "Задает светлую тему";
+            else if (sender.Equals(ButtonDark)) StatusTextBlock1.Text = "Задает темную тему";
+            else if (sender.Equals(ButtonInfo)) StatusTextBlock1.Text = "Показывает информацию о разработчике";
+            else if (sender.Equals(ButtonClose)) StatusTextBlock1.Text = "Закрывает окно";
+            else if (sender.Equals(Menu1)) StatusTextBlock1.Text = "Меню";
+            else if (sender.Equals(ToolBar1)) StatusTextBlock1.Text = "Меню инструментов";
+            else if (sender.Equals(StatusTextBlock1)) StatusTextBlock1.Text = "Тут показывается смысл";
         }
     }
 }
