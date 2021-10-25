@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+﻿using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace _3
 {
@@ -30,13 +18,13 @@ namespace _3
         private void SiteClick(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(
-                "!!!ВНИМАНИЕ!!!!!!ВНИМАНИЕ!!!\n!!!ВНИМАНИЕ!!!!!!ВНИМАНИЕ!!!\n!!!ВНИМАНИЕ!!!!!!ВНИМАНИЕ!!!",
+                "!!!ВНИМАНИЕ!!!!!!ВНИМАНИЕ!!!\n!!!ВНИМАНИЕ!!!!!!ВНИМАНИЕ!!!\n!!!ВНИМАНИЕ!!!!!!ВНИМАНИЕ!!!\nВАЖНАЯ ИНФОРМАЦИЯ О РАЗРАБОТЧИКЕ!",
                 "!!!ВНИМАНИЕ!!!",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Warning
             );
             MessageBox.Show(
-                "спасибо за внимание",
+                "Он учится в БрГТУ",
                 "Важно",
                 MessageBoxButton.OK,
                 MessageBoxImage.Information
