@@ -7,6 +7,8 @@ from pprint import pprint
 from typing import Callable
 
 A = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+N = 10
+RN = range(N)
 
 
 def r1(x: int, y: int) -> bool:
@@ -20,42 +22,52 @@ def r2(x: int, y: int) -> bool:
 
 
 def relation_boolean(s: list, r: Callable[[int, int], bool]) -> list[tuple]:
-    return [arg for arg in itertools.product(s, s) if r(arg[0], arg[1])]
+    """Булеан отношения"""
+    return [pare for pare in itertools.product(s, s) if r(pare[0], pare[1])]
 
 
 def relation_matrix(s: list, r: Callable[[int, int], bool]) -> list[list]:
+    """Матрица отношения"""
     boolean = relation_boolean(s, r)
-    output = [[0 for _ in s] for _ in s]
+    output = [[0 for _ in RN] for _ in RN]
     for i, j in boolean:
         output[i - 1][j - 1] = 1
     return output
 
 
 def transpose(matrix: list[list]) -> list[list]:
+    """Транспонирование матрицы для обратного отношения"""
     output = [list(column) for column in zip(*matrix)]
     return output
 
 
 def addition(matrix: list[list]) -> list[list]:
-    output = [[1 for _ in row] for row in matrix]
+    """Дополнение отношения"""
+    output = [[1 for _ in RN] for _ in RN]
     for i, row in enumerate(matrix):
         for j, column in enumerate(row):
-            output[i][j] -= column
+            output[i][j] ^= column
     return output
 
 
-def auf(matrix):
+def warshall(matrix):
+    """Алгоритм Флойда-Уоршолла"""
     matrix = deepcopy(matrix)
-    le = len(matrix)
-    for k in range(le):
-        for i in range(le):
-            for j in range(le):
+    for k in RN:
+        for i in RN:
+            for j in RN:
                 matrix[i][j] |= matrix[i][k] and matrix[k][j]
     return matrix
 
 
 def dot(m1: list[list], m2: list[list]):
-    return np.dot(m1, m2).tolist()
+    """Произведение матриц для композиции"""
+    output = [[0 for _ in RN] for _ in RN]
+    for i in RN:
+        for j in RN:
+            for k in RN:
+                output[i][j] |= m1[i][k] and m2[k][j]
+    return output
 
 
 def main():
@@ -80,12 +92,13 @@ def main():
     R2: симметрично''')
 
     print('\n4. Транзитивное замыкание алгоритмом Флойда-Уоршолла: R2')
-    pprint(auf(matrix2))
+    pprint(warshall(matrix2))
 
     print('\n5. Композиция:\nR ○ S')
     pprint(dot(matrix1, matrix2))
-    print('\nR ○ S')
+    print('\nS ○ R')
     pprint(dot(matrix2, matrix1))
+    print('\nСвойством коммутативности не обладает')
 
 
 if __name__ == '__main__':
