@@ -1,9 +1,8 @@
 # Вариант 9
 
 import itertools
-import numpy as np
 from copy import deepcopy
-from pprint import pprint
+# from pprint import pprint
 from typing import Callable
 
 A = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -68,6 +67,13 @@ def dot(m1: list[list], m2: list[list]):
             for k in RN:
                 output[i][j] |= m1[i][k] and m2[k][j]
     return output
+
+
+def pprint(m):
+    """Красивый вывод матрицы"""
+    print('    ', *A, sep='  ')
+    for i, row in enumerate(m):
+        print(f'{i + 1 : 3}  {row}')
 
 
 def main():
