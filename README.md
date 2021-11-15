@@ -6,5 +6,5 @@
 3. _may be added_
 
 ### Other links:
-1. Programming languages - https://github.com/FalseR20/Prog_lang
-2. Decision making methods and algorithms - МиАПР - https://github.com/FalseR20/miapr_po7
+1. Programming languages - Языки программирования - https://github.com/FalseR20/Prog_lang
+2. Decision making methods and algorithms - Методы и алгоритмы принятия решений - https://github.com/FalseR20/miapr_po7/tree/main/reports/Krupenkov/universal
