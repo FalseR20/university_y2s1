@@ -1,22 +1,20 @@
-from __future__ import annotations
+# http://cppalgo.blogspot.com/2011/11/fibonacci-heap.html
 
+from __future__ import annotations
 import copy
 from typing import Optional
 
 
 class Node:
     def __init__(
-            self, value: int,
-            parent: Optional[Node] = None, child: Optional[Node] = None,
-            left: Optional[Node] = None, right: Optional[Node] = None,
-            is_del: bool = False
+            self, value: int, child: Optional[Node] = None,
+            left: Optional[Node] = None, right: Optional[Node] = None
     ):
         self.value = value
-        self.parent = parent
         self.child = child
         self.left = left
         self.right = right
-        self.is_del = is_del
+        self.depth: int = 1
 
     def check(self) -> str:
         return f"{self.left.check() if self.left else ''}-" \
@@ -49,13 +47,65 @@ class FibHeap:
             cursor = cursor.left
         while cursor:
             if cursor == self.__min:
-                print("min->", end='')
+                print("`", end='')
             print(cursor.value, cursor.child.check() if cursor.child else '', end='')
             cursor = cursor.right
         print()
 
     def get_min(self) -> int:
         return self.__min.value
+
+    def pop(self):
+        pop_value = self.__min.value
+        tail = self.__min.child
+        cursor: Optional[Node] = None
+        if self.__min.left:
+            self.__min.left.right = self.__min.right
+            cursor = self.__min.left
+            while cursor.left:
+                cursor = cursor.left
+        if self.__min.right:
+            self.__min.right.left = self.__min.left
+            if not cursor:
+                cursor = self.__min.right
+        del self.__min
+        self.__min = cursor  # __min is not actual
+
+        # Consolidate stage
+        if tail:
+            tail_heap = FibHeap()
+            tail_heap.__min = tail
+            tail_heap.__is_empty = False
+            self.__iadd__(tail_heap)  # __min is not actual
+
+        while cursor.right:
+            if cursor.depth != cursor.right.depth:
+                cursor = cursor.right
+            else:
+                if cursor.value < cursor.right.value:
+                    max_node = cursor.right
+                    cursor.right = cursor.right.right
+                    if cursor.right:
+                        cursor.right.left = cursor
+                else:
+                    max_node = cursor
+                    cursor = cursor.right
+                    cursor.left = max_node.left
+                    if max_node.left:
+                        max_node.left.right = cursor
+
+                if not cursor.child:
+                    cursor.child = max_node
+                else:
+                    cursor_child = cursor.child
+                    while cursor_child.right:
+                        cursor_child = cursor_child.right
+                    cursor_child.right = max_node
+                    cursor_child.right.left = cursor_child
+                cursor.depth += 1
+                if self.__min.value > cursor.value:
+                    self.__min = cursor
+        return pop_value
 
     def __iadd__(self, other: FibHeap):
         other = copy.deepcopy(other)
@@ -82,12 +132,10 @@ class FibHeap:
 
 def main():
     heap1 = FibHeap(5, 1, 3, 2, 4, 0)
-    heap2 = FibHeap(7, 6)
-    heap3 = heap1 + heap2
-    heap3 += heap2
+    heap1 += FibHeap(7, 6)
     heap1.check()
-    heap2.check()
-    heap3.check()
+    print(f"deleted: min{heap1.pop()}")
+    heap1.check()
 
 
 if __name__ == '__main__':
