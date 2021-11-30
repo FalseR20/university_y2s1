@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Slider Minimum="8" Maximum="30" x:Name="SliderFontSize" />
+        <TextBlock x:Name="Message" Margin="0 50 0 0 "
+                   FontSize="{Binding ElementName=SliderFontSize, Path=NotValue}">
+            Пример WPF-приложения для демонстрации привязки данных
+        </TextBlock>
+
     </Grid>
 </Window>
