@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6760A097-1E2B-4C4F-ADD7-DCB510855C3D}</ProjectGuid>
+    <ProjectGuid>{02A4C647-DE49-4799-A1D0-8F9150D85BC0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>_4</RootNamespace>
-    <AssemblyName>4</AssemblyName>
+    <RootNamespace>_3z2</RootNamespace>
+    <AssemblyName>3z2</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

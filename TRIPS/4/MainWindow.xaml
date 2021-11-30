@@ -1,17 +1,50 @@
 ﻿<Window x:Class="_4.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:_4"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Slider Minimum="8" Maximum="30" x:Name="SliderFontSize" />
-        <TextBlock x:Name="Message" Margin="0 50 0 0 "
-                   FontSize="{Binding ElementName=SliderFontSize, Path=NotValue}">
-            Пример WPF-приложения для демонстрации привязки данных
-        </TextBlock>
+        Title="MainWindow" Height="350" Width="600">
+    <Window.Resources>
+        <x:Array x:Key="EditModes" Type="{x:Type InkCanvasEditingMode}">
+            <x:Static Member="InkCanvasEditingMode.Ink" />
+            <x:Static Member="InkCanvasEditingMode.EraseByPoint" />
+            <x:Static Member="InkCanvasEditingMode.Select" />
+        </x:Array>
+        <x:Array x:Key="DrawAttrs" Type="{x:Type DrawingAttributes}">
+            <DrawingAttributes Color="Black" />
+            <DrawingAttributes Color="White" />
+            <DrawingAttributes Color="Green"/>
+            <DrawingAttributes Color="Red"/>
+            <DrawingAttributes Color="Blue"/>
+            <DrawingAttributes Color="Yellow"/>
+        </x:Array>
+    </Window.Resources>
 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0">
+            <ToolBar>
+                <ComboBox x:Name="ChangeMode" SelectedIndex="0" Width="200" ItemsSource="{StaticResource EditModes}" />
+                <Slider Width="100" Minimum="1" Maximum="100" ValueChanged="ChangeBrushSize" />
+                <ComboBox x:Name="SelectColor"
+                    ItemsSource="{StaticResource DrawAttrs}"
+                    SelectedIndex="0">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <!-- <Label Background="{Binding Path=Color.ColorContext}" Height="25" Width="25" /> -->
+                            <TextBlock Text="{Binding Path=Color}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </ToolBar>
+        </DockPanel>
+
+        <InkCanvas
+            Grid.Row="1"
+            Name="InkCanvas"
+            DefaultDrawingAttributes="{Binding ElementName=SelectColor, Path=SelectedValue}"
+            EditingMode="{Binding ElementName=ChangeMode, Path=SelectedValue}" />
     </Grid>
 </Window>
