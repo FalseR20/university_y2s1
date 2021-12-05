@@ -2,6 +2,7 @@ import numpy as np
 
 
 def adjacency_matrix(ribs: list[tuple]) -> np.ndarray:
+    """Построение матрицы смежности"""
     count = np.max(ribs) + 1
     m = np.zeros((count, count), dtype=np.int32)
     for a, b in ribs:
@@ -10,6 +11,7 @@ def adjacency_matrix(ribs: list[tuple]) -> np.ndarray:
 
 
 def encoding(matrix: np.ndarray) -> list:
+    """Кодирование дерева"""
     count = len(matrix)
     code = []
     for _ in range(count - 2):
@@ -23,6 +25,7 @@ def encoding(matrix: np.ndarray) -> list:
 
 
 def decoding(code: list) -> np.ndarray:
+    """Декодирование"""
     count = len(code) + 2
     m = np.zeros((count, count), dtype=np.int32)
     range_ = np.arange(count)
@@ -41,7 +44,8 @@ def decoding(code: list) -> np.ndarray:
 
 
 def main():
-    ribs = [(0, 1), (0, 2), (1, 3), (1, 4), (2, 5), (2, 6), (5, 7), (7, 8), (7, 9), (8, 10)]
+    ribs = [(0, 1), (0, 2), (1, 3), (1, 4),
+            (2, 5), (2, 6), (5, 7), (7, 8), (7, 9), (8, 10)]
     matrix = adjacency_matrix(ribs)
     print("Matrix:", matrix, sep="\n")
     code = encoding(matrix)
